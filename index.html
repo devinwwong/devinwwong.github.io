@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Devin — Mechanical Engineer</title>
+  <title>Devin Wong — Mechanical Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <style>
     /* ── Design tokens ─────────────────────────────────── */
@@ -113,7 +113,7 @@
     .hero-tagline {
       font-size: 1.05rem;
       color: var(--muted);
-      max-width: 38ch;
+      max-width: 42ch;
       margin-bottom: 2.5rem;
       font-style: italic;
     }
@@ -226,7 +226,13 @@
       letter-spacing: 0.2em;
       color: var(--muted);
     }
-    /* Replace background + ::after with an <img> tag when ready */
+    .about-photo-frame img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.15) contrast(1.02);
+    }
+    .about-photo-frame:has(img)::after { content: none; }
     .about-text h3 {
       font-family: var(--font-head);
       font-size: 1.8rem;
@@ -323,7 +329,13 @@
       text-transform: uppercase;
       color: var(--muted);
     }
-    /* Replace .project-img contents with an <img> tag for each project */
+    .project-img img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover .project-img img { transform: scale(1.04); }
     .project-tag {
       position: absolute; top: 1rem; left: 1rem;
       font-family: var(--font-mono);
@@ -511,7 +523,7 @@
 
   <!-- ── Navigation ──────────────────────────────────── -->
   <nav>
-    <div class="nav-logo">YN.ENG — v1.0</div>
+    <div class="nav-logo">DW.ENG — v1.0</div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -524,12 +536,12 @@
   <!-- ── Hero ────────────────────────────────────────── -->
   <section id="hero">
     <div class="hero-left">
-      <p class="hero-label">Mechanical Engineer — Portfolio</p>
+      <p class="hero-label">Mechanical Engineer — Design, Analysis & Manufacturing</p>
       <h1 class="hero-name">
-        Your<br><span>Name</span><br>Here
+        Devin<br><span>Wong</span>
       </h1>
       <p class="hero-tagline">
-        Designing systems that move, endure, and perform — from concept sketch to manufactured part.
+        I design, simulate, and build hardware — then test it against real data. A simulation is only a hypothesis until the bench confirms it.
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -539,19 +551,19 @@
 
     <div class="hero-stats">
       <div class="stat-item">
-        <div class="stat-number">0+</div><!-- Replace with real number -->
-        <div class="stat-label">Projects Completed</div>
+        <div class="stat-number">6+</div>
+        <div class="stat-label">Engineering Projects</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">0+</div>
-        <div class="stat-label">Years Experience</div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Industry & FSAE Roles</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">0+</div>
-        <div class="stat-label">Tools & Software</div>
+        <div class="stat-number">'28</div>
+        <div class="stat-label">Expected B.S. — UC San Diego</div>
       </div>
       <div class="hero-availability">
-        <span class="dot"></span> Available for new opportunities
+        <span class="dot"></span> Available for Summer 2027 internships (Jun–Sep)
       </div>
     </div>
 
@@ -567,39 +579,42 @@
     </div>
     <div class="about-grid">
       <div class="about-photo-frame reveal">
-        <!-- Replace contents with: <img src="your-photo.jpg" alt="Devin" style="width:100%;height:100%;object-fit:cover;"> -->
+        <img src="images/devin_photo.png" alt="Devin Wong" loading="lazy" />
       </div>
       <div class="about-text reveal">
-        <h3>Engineer by training,<br>problem-solver by nature.</h3>
+        <h3>Simulation is a hypothesis<br>until the data backs it up.</h3>
         <p>
-          Hi — I'm <strong>Devin</strong>, a mechanical engineer based in <strong>Santa Clara</strong>.
-          I specialize in <strong>design, analysis, and prototyping</strong> of mechanical systems, with
-          a passion for bridging the gap between concept and physical product.
+          I'm <strong>Devin Wong</strong>, a Mechanical Engineering student at <strong>UC San Diego</strong>
+          (B.S. expected June 2028). I work across the full loop — <strong>design, FEA/CFD analysis,
+          manufacturing, and physical validation</strong> — and I care most about the moment a part
+          comes off the bench and the numbers agree with the model.
         </p>
         <p>
-          My background spans <strong>thermal systems, structural analysis, and manufacturing processes</strong>.
-          I thrive in cross-functional environments where precision engineering meets creative problem-solving.
+          I grew up in the <strong>Bay Area</strong>, where watching startups and hardware companies
+          ship real products pulled me into engineering. That drive led me to
+          <strong>Triton Racing (Formula SAE)</strong>, where I designed and validated aero structures,
+          and to internships at <strong>Roche</strong> and <strong>Tesla</strong>.
         </p>
         <p>
-          <!-- Add a personal sentence — what drives you, what you're working on, or what makes you different. -->
-          When I'm not at the workbench I enjoy [hobby/interest], which keeps my spatial reasoning sharp.
+          Whether it's a carbon-fiber wing spar or a microfluidic sensor module, my habit is the same:
+          predict it with simulation, build it in the shop, and prove it on a test rig.
         </p>
         <div class="detail-grid">
           <div class="detail-item">
             <label>Location</label>
-            <span>Santa Clara, State</span>
+            <span>San Diego / Bay Area, CA</span>
           </div>
           <div class="detail-item">
             <label>Degree</label>
             <span>B.S. Mechanical Engineering</span>
           </div>
           <div class="detail-item">
-            <label>Specialization</label>
-            <span>Design & Manufacturing</span>
+            <label>Focus</label>
+            <span>Design, Analysis & Manufacturing</span>
           </div>
           <div class="detail-item">
             <label>Status</label>
-            <span>Open to Work</span>
+            <span>Open to Summer 2027 Internships</span>
           </div>
         </div>
       </div>
@@ -617,34 +632,36 @@
       <div class="skill-category">
         <div class="skill-cat-title">CAD / Design</div>
         <span class="skill-tag">SolidWorks</span>
-        <span class="skill-tag">AutoCAD</span>
-        <span class="skill-tag">CATIA</span>
         <span class="skill-tag">Fusion 360</span>
-        <span class="skill-tag">GD&T</span>
+        <span class="skill-tag">GD&T (ASME Y14.5)</span>
+        <span class="skill-tag">DFM / DFA</span>
+        <span class="skill-tag">Topology Optimization</span>
       </div>
       <div class="skill-category">
         <div class="skill-cat-title">Analysis / Simulation</div>
-        <span class="skill-tag">FEA / ANSYS</span>
-        <span class="skill-tag">CFD</span>
+        <span class="skill-tag">ANSYS Mechanical</span>
+        <span class="skill-tag">ANSYS ACP</span>
+        <span class="skill-tag">ANSYS Fluent (CFD)</span>
+        <span class="skill-tag">SolidWorks Flow Sim</span>
+        <span class="skill-tag">Mesh Convergence / GCI</span>
         <span class="skill-tag">MATLAB</span>
-        <span class="skill-tag">Thermal Analysis</span>
-        <span class="skill-tag">Fatigue Analysis</span>
       </div>
       <div class="skill-category">
         <div class="skill-cat-title">Manufacturing</div>
-        <span class="skill-tag">CNC Machining</span>
+        <span class="skill-tag">CNC Router (CAM)</span>
+        <span class="skill-tag">Composite Wet Layup</span>
+        <span class="skill-tag">Water Jet</span>
         <span class="skill-tag">3D Printing</span>
-        <span class="skill-tag">Sheet Metal</span>
-        <span class="skill-tag">Welding</span>
-        <span class="skill-tag">DFM / DFA</span>
+        <span class="skill-tag">Laser Cutter</span>
+        <span class="skill-tag">Hot-Wire Cutter</span>
       </div>
       <div class="skill-category">
-        <div class="skill-cat-title">Other</div>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">MS Office</span>
-        <span class="skill-tag">Project Mgmt</span>
+        <div class="skill-cat-title">Testing & Other</div>
+        <span class="skill-tag">3-Point Bend Testing</span>
+        <span class="skill-tag">Flow / Pressure Rigs</span>
+        <span class="skill-tag">Wind Tunnel</span>
+        <span class="skill-tag">Data Analysis</span>
         <span class="skill-tag">Technical Writing</span>
-        <span class="skill-tag">Root Cause Analysis</span>
       </div>
     </div>
   </section>
@@ -661,20 +678,21 @@
       <!-- Project card 1 -->
       <div class="project-card reveal">
         <div class="project-img">
-          <div class="project-img-placeholder">Project Image</div>
-          <!-- Replace with: <img src="project1.jpg" alt="Project One"> -->
-          <span class="project-tag">Design</span>
+          <img src="images/rearwing/spar_in_assembly.png" alt="Carbon-fiber rear wing spar in assembly" loading="lazy" />
+          <span class="project-tag">Composites</span>
         </div>
         <div class="project-body">
-          <h3 class="project-title">Project Title One</h3>
+          <h3 class="project-title">Rear Wing Spar</h3>
           <p class="project-desc">
-            Brief description of the project. What was the problem? What did you design or build?
-            What was the outcome or key result? Keep it concise but specific.
+            Designed a 31" corrugated carbon-fiber rear-wing spar for Triton Racing carrying a 400 N/m
+            distributed aero load. Modeled the 4-ply twill layup in ANSYS ACP, CNC-milled the foam mold
+            to 0.004" tolerance, and validated laminate stiffness with a 3-point bend test — holding peak
+            deflection to 0.38 mm at a final FOS of 5.5.
           </p>
           <div class="project-meta">
-            <span>SolidWorks</span>
-            <span>FEA</span>
-            <span>2024</span>
+            <span>ANSYS ACP</span>
+            <span>Wet Layup</span>
+            <span>2026</span>
           </div>
         </div>
       </div>
@@ -682,19 +700,21 @@
       <!-- Project card 2 -->
       <div class="project-card reveal">
         <div class="project-img">
-          <div class="project-img-placeholder">Project Image</div>
-          <span class="project-tag">Analysis</span>
+          <img src="images/roche/shear_profile.png" alt="Microfluidic wall-shear CFD profile" loading="lazy" />
+          <span class="project-tag">CFD · Roche</span>
         </div>
         <div class="project-body">
-          <h3 class="project-title">Project Title Two</h3>
+          <h3 class="project-title">Sensor Module Optimization</h3>
           <p class="project-desc">
-            Brief description of the project. Highlight technical challenges overcome and
-            quantifiable results (e.g., "Reduced part weight by 18% while maintaining load capacity").
+            Ran parametric trade studies on 4 microfluidic sensor-module geometries for next-gen sequencing
+            hardware at Roche. Built grid-independent CFD (up to 15M cells) and a PD-pump / pressure-sensor
+            rig to validate trends — identifying the design that cut wall-shear non-uniformity by 70% and
+            pressure drop by 72%.
           </p>
           <div class="project-meta">
-            <span>ANSYS</span>
-            <span>MATLAB</span>
-            <span>2024</span>
+            <span>SolidWorks Flow Sim</span>
+            <span>Flow Testing</span>
+            <span>2026</span>
           </div>
         </div>
       </div>
@@ -702,19 +722,84 @@
       <!-- Project card 3 -->
       <div class="project-card reveal">
         <div class="project-img">
-          <div class="project-img-placeholder">Project Image</div>
-          <span class="project-tag">Prototype</span>
+          <img src="images/mount/irl_assembly.png" alt="Aluminum swan-neck rear wing mounts assembled" loading="lazy" />
+          <span class="project-tag">FEA</span>
         </div>
         <div class="project-body">
-          <h3 class="project-title">Project Title Three</h3>
+          <h3 class="project-title">Rear Wing Mounts</h3>
           <p class="project-desc">
-            Another project. Senior capstone, personal build, competition entry, or internship
-            deliverable all work well here. Include your role if it was a team effort.
+            Designed 6061-T6 aluminum swan-neck rear-wing mounts using topology optimization to cut initial
+            weight by 77%. Verified hand calculations against a 2.2M-cell ANSYS study (&lt;0.5% stress
+            variation) and confirmed a static bolt FOS of 47.5 at the chassis interface. Fabricated via
+            water jet.
           </p>
           <div class="project-meta">
+            <span>ANSYS Mechanical</span>
+            <span>Water Jet</span>
+            <span>2025</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project card 4 -->
+      <div class="project-card reveal">
+        <div class="project-img">
+          <img src="images/cfd2d/pressure.png" alt="Front wing 2D CFD pressure field" loading="lazy" />
+          <span class="project-tag">Aero</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Front Wing 2D CFD</h3>
+          <p class="project-desc">
+            Two-element front-wing study (NACA 4412 + S1223) in ANSYS Fluent targeting 200 N at 15 m/s.
+            Established mesh independence via a four-level study and Richardson-extrapolation GCI (2.4%),
+            then drove the design with a 50-point sweep across 5 parameters — reaching Cl 2.74 and L/D 11.0.
+          </p>
+          <div class="project-meta">
+            <span>ANSYS Fluent</span>
+            <span>k-ω</span>
+            <span>2025</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project card 5 -->
+      <div class="project-card reveal">
+        <div class="project-img">
+          <img src="images/windtunnel/setup.png" alt="Wind tunnel test setup with scale wing model" loading="lazy" />
+          <span class="project-tag">Validation</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Wind Tunnel Validation</h3>
+          <p class="project-desc">
+            Physically checked CFD trends with a 9%-scale 3D-printed wing in the UCSD wind tunnel across
+            3 pitch angles and 5 speeds. Confirmed axial force linear in dynamic pressure (R² &gt; 0.996)
+            and the same V² scaling as CFD, with force ratios agreeing to 3.8%.
+          </p>
+          <div class="project-meta">
+            <span>Experimental Aero</span>
             <span>3D Printing</span>
-            <span>CNC</span>
-            <span>2023</span>
+            <span>2025</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project card 6 -->
+      <div class="project-card reveal">
+        <div class="project-img">
+          <img src="images/fixture/prototype.png" alt="3D-printed precision Z-positioning fixture prototype" loading="lazy" />
+          <span class="project-tag">Design · Roche</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Precision Z-Positioning Fixture</h3>
+          <p class="project-desc">
+            Designed a lead-screw, knob-driven fixture at Roche for fine, repeatable Z-control of probes
+            within a 30 mm envelope — replacing an error-prone manual setup. Modeled and iterated in
+            SolidWorks, then validated with a 3D-printed prototype.
+          </p>
+          <div class="project-meta">
+            <span>SolidWorks</span>
+            <span>3D Printing</span>
+            <span>2026</span>
           </div>
         </div>
       </div>
@@ -733,33 +818,45 @@
 
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">JAN 2024 — PRESENT</div>
-        <div class="timeline-role">Mechanical Engineer</div>
-        <div class="timeline-company">Company Name · City, State</div>
+        <div class="timeline-date">SEP 2026 — JUN 2027 · INCOMING</div>
+        <div class="timeline-role">Tooling & Process Engineering Intern — Castings</div>
+        <div class="timeline-company">Tesla · Lathrop, CA</div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">JUN 2026 — SEP 2026</div>
+        <div class="timeline-role">Mechanical Engineering Intern — Sensor Module Development</div>
+        <div class="timeline-company">Roche · Santa Clara, CA</div>
         <p class="timeline-desc">
-          What do / did you do here? Focus on impact and scope. Use action verbs:
-          designed, analyzed, led, reduced, improved, developed. Quantify where possible.
+          Evaluated how fluidic geometry drives shear-stress distribution and pressure drop in
+          next-generation sequencing hardware. Ran CFD in SolidWorks Flow Simulation across sensor-module
+          architectures, performed steady-state thermal analysis improving interface temperature uniformity
+          by a factor of two, and designed/fabricated fixtures and test stands to validate fluidic prototypes.
         </p>
         <div class="timeline-skills">
-          <span class="skill-tag">SolidWorks</span>
-          <span class="skill-tag">DFM</span>
-          <span class="skill-tag">Vendor Management</span>
+          <span class="skill-tag">SolidWorks Flow Sim</span>
+          <span class="skill-tag">Thermal Analysis</span>
+          <span class="skill-tag">Test-Stand Design</span>
         </div>
       </div>
 
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">MAY 2023 — DEC 2023</div>
-        <div class="timeline-role">Engineering Intern</div>
-        <div class="timeline-company">Company Name · City, State</div>
+        <div class="timeline-date">OCT 2025 — JUN 2026</div>
+        <div class="timeline-role">Mechanical Design & Analysis Engineer — Aerodynamics</div>
+        <div class="timeline-company">Triton Racing (Formula SAE) · UC San Diego</div>
         <p class="timeline-desc">
-          Internship responsibilities and achievements. Even short internships are valuable —
-          focus on what you learned and what you delivered.
+          Designed the TR26 rear-wing aero assembly to maximize downforce and optimize structural load
+          paths. Performed structural FEA in ANSYS Mechanical (200+ lb distributed loads, FOS ~1.5) and
+          2D CFD in ANSYS Fluent, generated Fusion 360 CAM toolpaths to machine high-density foam molds
+          on a 3-axis CNC router, and authored 10+ GD&T drawings to ASME Y14.5-2018.
         </p>
         <div class="timeline-skills">
-          <span class="skill-tag">AutoCAD</span>
-          <span class="skill-tag">ANSYS</span>
-          <span class="skill-tag">Technical Reports</span>
+          <span class="skill-tag">ANSYS Mechanical</span>
+          <span class="skill-tag">ANSYS Fluent</span>
+          <span class="skill-tag">Fusion 360 CAM</span>
+          <span class="skill-tag">Composites</span>
         </div>
       </div>
 
@@ -776,24 +873,24 @@
     <div class="edu-grid">
 
       <div class="edu-card reveal">
-        <div class="edu-year">2020 — 2024</div>
+        <div class="edu-year">Expected June 2028</div>
         <div class="edu-degree">B.S. Mechanical Engineering</div>
-        <div class="edu-school">University Name</div>
+        <div class="edu-school">University of California, San Diego</div>
         <div class="edu-details">
-          GPA: X.XX / 4.0<br>
-          Relevant coursework: Thermodynamics, Fluid Mechanics, Machine Design, FEA, Materials Science<br>
-          Honors / Clubs: [Formula SAE]
+          La Jolla, CA<br>
+          Relevant coursework: Solid Mechanics, Fluid Mechanics, Machine Design, FEA, Materials Science, Thermodynamics<br>
+          Activities: Triton Racing (Formula SAE) — Aerodynamics
         </div>
       </div>
 
       <div class="edu-card reveal">
-        <div class="edu-year">Certifications</div>
-        <div class="edu-degree">Professional Certs</div>
-        <div class="edu-school">Various Issuers</div>
+        <div class="edu-year">Hands-On Focus</div>
+        <div class="edu-degree">Design → Build → Validate</div>
+        <div class="edu-school">Applied Engineering</div>
         <div class="edu-details">
-          · Certified SolidWorks Associate (CSWA)<br>
-          · OSHA 30-Hour Safety<br>
-          · [Any other relevant certifications]
+          · FEA &amp; CFD with verified mesh convergence (GCI)<br>
+          · In-house composites, CNC, and water-jet fabrication<br>
+          · Physical test rigs to validate every simulation
         </div>
       </div>
 
@@ -806,7 +903,7 @@
     <p class="contact-eyebrow reveal">Let's build something</p>
     <h2 class="contact-heading reveal">Get In Touch</h2>
     <p class="contact-sub reveal">
-      Whether you have a role, a project, or just want to talk engineering —
+      Whether you have a role, a project, or just want to talk hardware —
       my inbox is always open.
     </p>
     <a href="mailto:devinwong51@gmail.com" class="contact-email reveal">devinwong51@gmail.com</a>
@@ -814,13 +911,12 @@
       <a href="https://linkedin.com/in/devinwwong" class="social-link" target="_blank">LinkedIn</a>
       <a href="https://github.com/devinwwong" class="social-link" target="_blank">GitHub</a>
       <a href="resume.pdf" class="social-link" target="_blank">Resume PDF</a>
-      <!-- Add more as needed: ASME, personal blog, etc. -->
     </div>
   </section>
 
   <!-- ── Footer ───────────────────────────────────────── -->
   <footer>
-    <p>© 2025 Devin — Mechanical Engineer</p>
+    <p>© 2026 Devin Wong — Mechanical Engineer</p>
     <p>Built with HTML & CSS · No frameworks</p>
   </footer>
 
