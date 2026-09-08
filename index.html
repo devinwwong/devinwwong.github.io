@@ -15,7 +15,7 @@
     body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.6 'Manrope', Arial, sans-serif; }
     a { color:inherit; }
     .wrap { width:min(920px, calc(100% - 40px)); margin:auto; }
-    nav { border-bottom:1px solid var(--line); }
+    nav { position:sticky; top:0; z-index:10; border-bottom:1px solid var(--line); background:rgba(13,20,25,.92); backdrop-filter:blur(12px); }
     nav .wrap { min-height:62px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
     .wordmark { font:500 .78rem/1 'DM Mono', monospace; text-decoration:none; letter-spacing:.12em; text-transform:uppercase; }
     .links { display:flex; gap:20px; align-items:center; font-size:.9rem; }
@@ -23,10 +23,18 @@
     .links a:hover { color:var(--ink); }
     .button { display:inline-block; border:1px solid var(--ink); padding:10px 15px; font:500 .76rem/1 'DM Mono', monospace; letter-spacing:.04em; text-decoration:none; }
     .button:hover { color:#10161b; background:var(--ink); }
-    .hero { padding:96px 0 80px; border-bottom:1px solid var(--line); background:radial-gradient(circle at 80% 0%, rgba(242,122,61,.13), transparent 29rem); }
+    .hero { padding:104px 0 88px; border-bottom:1px solid var(--line); background:radial-gradient(circle at 80% 0%, rgba(242,122,61,.13), transparent 29rem); }
+    .hero-grid { display:grid; grid-template-columns:minmax(0, 1fr) 272px; gap:56px; align-items:end; }
     .eyebrow { margin:0 0 14px; color:var(--accent); font:500 .72rem/1.5 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; }
-    h1 { max-width:760px; margin:0; font-size:clamp(2.7rem, 6vw, 5rem); letter-spacing:-.055em; line-height:1; }
-    .intro { max-width:640px; margin:26px 0 32px; color:var(--muted); font-size:1.12rem; }
+    h1 { max-width:760px; margin:0; font-size:clamp(3rem, 5vw, 4.5rem); letter-spacing:-.06em; line-height:.97; }
+    .hero-role { margin:16px 0 0; color:var(--muted); font-size:1rem; }
+    .hero-focus { display:flex; flex-wrap:wrap; gap:8px 16px; margin:30px 0 34px; color:var(--muted); font-size:.94rem; }
+    .hero-focus span { white-space:nowrap; }
+    .hero-focus span + span::before { content:'·'; color:var(--gold); margin-right:16px; }
+    .hero-meta { border-left:1px solid var(--line); padding-left:24px; }
+    .hero-meta div + div { margin-top:23px; }
+    .hero-meta dt { color:var(--accent); font:500 .66rem/1.4 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; }
+    .hero-meta dd { margin:5px 0 0; color:var(--ink); font-size:.92rem; line-height:1.45; }
     .hero .button + .button { margin-left:10px; }
     .button.secondary { border-color:var(--line); color:var(--ink); }
     .button.secondary:hover { border-color:var(--ink); }
@@ -65,18 +73,24 @@
     .contact h2 { font-size:clamp(2rem, 4vw, 3rem); margin-bottom:10px; }
     .contact p { max-width:590px; color:var(--muted); margin:0 0 22px; }
     footer { padding:24px 0; border-top:1px solid var(--line); color:var(--muted); font-size:.85rem; }
-    @media (max-width:720px) { .links a:not(.button) { display:none; } .hero { padding:72px 0 60px; } section { padding:56px 0; } .project { grid-template-columns:1fr; } .project img { min-height:0; aspect-ratio:16 / 9; } .project-content { border-top:1px solid var(--line); border-left:0; padding:24px; } .role { grid-template-columns:1fr; gap:6px; } .role-brand { justify-content:flex-start; margin-top:10px; } .capability { grid-template-columns:1fr; gap:9px; padding:18px 0; } .capability dd { display:block; line-height:1.9; } .capability dd span { display:block; } .capability dd span + span::before { display:none; } }
+    @media (max-width:720px) { .links a:not(.button) { display:none; } .hero { padding:76px 0 64px; } .hero-grid { grid-template-columns:1fr; gap:38px; } .hero-meta { border-top:1px solid var(--line); border-left:0; padding:24px 0 0; display:grid; grid-template-columns:repeat(2, 1fr); gap:20px; } .hero-meta div + div { margin-top:0; } .hero-focus { display:block; line-height:1.9; } .hero-focus span { display:block; } .hero-focus span + span::before { display:none; } section { padding:56px 0; } .project { grid-template-columns:1fr; } .project img { min-height:0; aspect-ratio:16 / 9; } .project-content { border-top:1px solid var(--line); border-left:0; padding:24px; } .role { grid-template-columns:1fr; gap:6px; } .role-brand { justify-content:flex-start; margin-top:10px; } .capability { grid-template-columns:1fr; gap:9px; padding:18px 0; } .capability dd { display:block; line-height:1.9; } .capability dd span { display:block; } .capability dd span + span::before { display:none; } }
   </style>
 </head>
 <body>
   <nav><div class="wrap"><a class="wordmark" href="#top">Devin Wong</a><div class="links"><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="resume.pdf" target="_blank" rel="noopener" class="button">Résumé PDF</a></div></div></nav>
   <main id="top">
-    <header class="hero"><div class="wrap">
-      <p class="eyebrow">Mechanical engineering · UC San Diego · B.S. expected 2028</p>
-      <h1>I design, analyze, build, and test hardware.</h1>
-      <p class="intro">Mechanical engineering student with hands-on work in composites, CFD/FEA, manufacturing, and experimental validation. Seeking Summer 2027 internships.</p>
+    <header class="hero"><div class="wrap hero-grid"><div>
+      <p class="eyebrow">Devin Wong</p>
+      <h1>Mechanical<br>Engineering</h1>
+      <p class="hero-role">UC San Diego · B.S. expected June 2028</p>
+      <p class="hero-focus"><span>Design</span><span>FEA + CFD</span><span>Manufacturing</span><span>Test</span></p>
       <a class="button" href="mailto:devinwong51@gmail.com">Email me</a><a class="button secondary" href="https://www.linkedin.com/in/devinwwong" target="_blank" rel="noopener">LinkedIn</a>
-    </div></header>
+    </div><dl class="hero-meta"><div><dt>Availability</dt><dd>Summer 2027<br>June – September</dd></div><div><dt>Experience</dt><dd>Tesla · Roche<br>Triton Racing</dd></div></dl></div></header>
+    <section id="experience"><div class="wrap"><h2>Experience</h2><div class="experience">
+      <article class="role"><time>Sep 2026 – Jun 2027<br>Incoming</time><div><h3>Tooling & Process Engineering Intern, Castings · Tesla</h3><p class="role-location">Lathrop, CA</p></div><div class="role-brand"><img class="role-logo tesla" src="tesla-wordmark.png" alt="Tesla"></div></article>
+      <article class="role"><time>Jun 2026 – Sep 2026</time><div><h3>Mechanical Engineering Intern, Sensor Module Development · Roche</h3><p class="role-location">Santa Clara, CA</p><p>Ran fluidic and thermal analyses, and designed fixtures and test stands for next-generation sequencing hardware.</p></div><div class="role-brand"><img class="role-logo roche" src="roche-logo.png" alt="Roche"></div></article>
+      <article class="role"><time>Oct 2025 – Jun 2026</time><div><h3>Mechanical Design & Analysis Engineer, Aerodynamics · Triton Racing</h3><p class="role-location">San Diego, CA</p><p>Owned rear-wing structures from load cases through FEA/CFD, CAM, GD&amp;T, and composite fabrication.</p></div><div class="role-brand"><img class="role-logo triton" src="triton-racing-logo.png" alt="Triton Racing"></div></article>
+    </div></div></section>
     <section id="projects" class="alt"><div class="wrap">
       <h2>Selected work</h2><p class="section-intro">A few projects that show the full loop: analysis, fabrication, and validation.</p>
       <div class="projects">
@@ -85,11 +99,6 @@
         <article class="project"><img src="mount_assembly.jpg" alt="Aluminum rear-wing mounts assembled"><div class="project-content"><p class="label">Triton Racing · FEA</p><h3>Rear-wing mounts</h3><p>Optimized and fabricated 6061-T6 swan-neck mounts, then verified the design through hand calculations and structural analysis.</p><div class="project-stats"><span>77% less mass</span><span>2.2M-cell FEA</span><span>Water-jet built</span></div></div></article>
       </div>
     </div></section>
-    <section id="experience"><div class="wrap"><h2>Experience</h2><div class="experience">
-      <article class="role"><time>Sep 2026 – Jun 2027<br>Incoming</time><div><h3>Tooling & Process Engineering Intern, Castings · Tesla</h3><p class="role-location">Lathrop, CA</p></div><div class="role-brand"><img class="role-logo tesla" src="tesla-wordmark.png" alt="Tesla"></div></article>
-      <article class="role"><time>Jun 2026 – Sep 2026</time><div><h3>Mechanical Engineering Intern, Sensor Module Development · Roche</h3><p class="role-location">Santa Clara, CA</p><p>Ran fluidic and thermal analyses, and designed fixtures and test stands for next-generation sequencing hardware.</p></div><div class="role-brand"><img class="role-logo roche" src="roche-logo.png" alt="Roche"></div></article>
-      <article class="role"><time>Oct 2025 – Jun 2026</time><div><h3>Mechanical Design & Analysis Engineer, Aerodynamics · Triton Racing</h3><p class="role-location">San Diego, CA</p><p>Owned rear-wing structures from load cases through FEA/CFD, CAM, GD&amp;T, and composite fabrication.</p></div><div class="role-brand"><img class="role-logo triton" src="triton-racing-logo.png" alt="Triton Racing"></div></article>
-    </div></div></section>
     <section class="alt"><div class="wrap"><h2>Capabilities</h2><dl class="capabilities"><div class="capability"><dt>Design</dt><dd><span>SolidWorks</span><span>Fusion 360</span><span>GD&amp;T + DFM/DFA</span></dd></div><div class="capability"><dt>Analysis</dt><dd><span>ANSYS Mechanical / ACP / Fluent</span><span>Flow Simulation</span><span>MATLAB + mesh convergence</span></dd></div><div class="capability"><dt>Build</dt><dd><span>CNC routing</span><span>Water jet</span><span>3D printing</span></dd></div><div class="capability"><dt>Test</dt><dd><span>Flow + pressure rigs</span><span>Wind tunnel</span><span>Three-point bend testing</span></dd></div><div class="capability"><dt>Manufacturing</dt><dd><span>CAM</span><span>Composite wet layup</span><span>Fixture design</span></dd></div></dl></div></section>
     <section class="contact"><div class="wrap"><h2>Available for Summer 2027.</h2><p>Seeking mechanical engineering internship opportunities from June through September 2027.</p><a class="button" href="mailto:devinwong51@gmail.com">devinwong51@gmail.com</a></div></section>
   </main>
