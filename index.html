@@ -28,10 +28,9 @@
     .eyebrow { margin:0 0 14px; color:var(--accent); font:500 .72rem/1.5 'DM Mono', monospace; letter-spacing:.08em; text-transform:uppercase; }
     h1 { max-width:760px; margin:0; font-size:clamp(3rem, 5vw, 4.5rem); letter-spacing:-.06em; line-height:.97; }
     .hero-role { margin:16px 0 0; color:var(--muted); font-size:1rem; }
-    .hero-focus { display:flex; align-items:center; gap:12px; min-height:31px; margin:30px 0 34px; color:var(--muted); }
-    .hero-focus-label { color:var(--accent); font:500 .67rem/1 'DM Mono', monospace; letter-spacing:.07em; text-transform:uppercase; }
-    .skill-rotator { min-width:190px; color:var(--ink); font-size:1rem; font-weight:600; }
-    .skill-rotator.is-changing { animation:skill-fade .28s ease; }
+    .hero-focus { display:flex; flex-wrap:wrap; gap:8px 16px; margin:30px 0 34px; color:var(--muted); font-size:.94rem; }
+    .hero-focus span { white-space:nowrap; }
+    .hero-focus span + span::before { content:'·'; color:var(--gold); margin-right:16px; }
     @keyframes skill-fade { 0% { opacity:0; transform:translateY(5px); } 100% { opacity:1; transform:translateY(0); } }
     .hero-meta { border-left:1px solid var(--line); padding-left:24px; }
     .hero-meta div + div { margin-top:23px; }
@@ -52,8 +51,13 @@
     .project h3 { margin:0 0 8px; font-size:1.05rem; letter-spacing:-.02em; line-height:1.25; }
     .project p { margin:0; color:var(--muted); font-size:.82rem; line-height:1.55; }
     .project .label { margin:0 0 10px; color:var(--accent); font:500 .61rem/1.4 'DM Mono', monospace; letter-spacing:.06em; text-transform:uppercase; }
-    .project-stats { display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:17px; }
-    .project-stats span { border:1px solid #34424c; border-radius:4px; background:#23313b; padding:5px 6px; color:#a9c8dc; font:500 .58rem/1 'DM Mono', monospace; letter-spacing:0; }
+    .project-stats { position:relative; min-height:31px; margin-top:auto; overflow:hidden; padding-top:17px; }
+    .project-stats::before, .project-stats::after { position:absolute; z-index:1; top:17px; bottom:0; width:22px; content:''; pointer-events:none; }
+    .project-stats::before { left:0; background:linear-gradient(90deg, #182129, transparent); }
+    .project-stats::after { right:0; background:linear-gradient(270deg, #182129, transparent); }
+    .conveyor-track { display:flex; width:max-content; gap:6px; animation:skill-conveyor var(--conveyor-duration, 14s) linear infinite; }
+    .conveyor-track span { flex:none; border:1px solid #34424c; border-radius:4px; background:#23313b; padding:5px 6px; color:#a9c8dc; font:500 .58rem/1 'DM Mono', monospace; letter-spacing:0; white-space:nowrap; }
+    @keyframes skill-conveyor { to { transform:translateX(-50%); } }
     .experience { display:grid; gap:0; }
     .role { display:grid; grid-template-columns:160px minmax(0, 1fr) 210px; gap:24px; align-items:center; padding:28px 0; border-top:1px solid var(--line); }
     .role:last-child { border-bottom:1px solid var(--line); }
@@ -76,7 +80,7 @@
     .contact h2 { font-size:clamp(2rem, 4vw, 3rem); margin-bottom:10px; }
     .contact p { max-width:590px; color:var(--muted); margin:0 0 22px; }
     footer { padding:24px 0; border-top:1px solid var(--line); color:var(--muted); font-size:.85rem; }
-    @media (max-width:720px) { .links a:not(.button) { display:none; } .hero { padding:76px 0 64px; } .hero-grid { grid-template-columns:1fr; gap:38px; } .hero-meta { border-top:1px solid var(--line); border-left:0; padding:24px 0 0; display:grid; grid-template-columns:repeat(2, 1fr); gap:20px; } .hero-meta div + div { margin-top:0; } .hero-focus { gap:10px; } section { padding:56px 0; } .projects { grid-template-columns:1fr; } .project-content { padding:22px; } .project img { aspect-ratio:16 / 9; } .role { grid-template-columns:1fr; gap:6px; } .role-brand { justify-content:flex-start; margin-top:10px; } .capability { grid-template-columns:1fr; gap:9px; padding:18px 0; } .capability dd { display:block; line-height:1.9; } .capability dd span { display:block; } .capability dd span + span::before { display:none; } }
+    @media (max-width:720px) { .links a:not(.button) { display:none; } .hero { padding:76px 0 64px; } .hero-grid { grid-template-columns:1fr; gap:38px; } .hero-meta { border-top:1px solid var(--line); border-left:0; padding:24px 0 0; display:grid; grid-template-columns:repeat(2, 1fr); gap:20px; } .hero-meta div + div { margin-top:0; } section { padding:56px 0; } .projects { grid-template-columns:1fr; } .project-content { padding:22px; } .project img { aspect-ratio:16 / 9; } .role { grid-template-columns:1fr; gap:6px; } .role-brand { justify-content:flex-start; margin-top:10px; } .capability { grid-template-columns:1fr; gap:9px; padding:18px 0; } .capability dd { display:block; line-height:1.9; } .capability dd span { display:block; } .capability dd span + span::before { display:none; } }
   </style>
 </head>
 <body>
@@ -86,7 +90,7 @@
       <p class="eyebrow">Devin Wong</p>
       <h1>Mechanical<br>Engineering</h1>
       <p class="hero-role">UC San Diego · B.S. expected June 2028</p>
-      <div class="hero-focus" aria-label="Core engineering skills"><span class="hero-focus-label">Core skills</span><span class="skill-rotator" id="skill-rotator">SolidWorks</span></div>
+      <p class="hero-focus"><span>Design</span><span>FEA + CFD</span><span>Manufacturing</span><span>Test</span></p>
       <a class="button" href="mailto:devinwong51@gmail.com">Email me</a><a class="button secondary" href="https://www.linkedin.com/in/devinwwong" target="_blank" rel="noopener">LinkedIn</a>
     </div><dl class="hero-meta"><div><dt>Availability</dt><dd>Summer 2027<br>June – September</dd></div><div><dt>Experience</dt><dd>Tesla · Roche<br>Triton Racing</dd></div></dl></div></header>
     <section id="experience"><div class="wrap"><h2>Experience</h2><div class="experience">
@@ -97,12 +101,12 @@
     <section id="projects" class="alt"><div class="wrap">
       <h2>Selected work</h2><p class="section-intro">A few projects that show the full loop: analysis, fabrication, and validation.</p>
       <div class="projects">
-        <article class="project"><img src="shear_profile.jpg" alt="Microfluidic wall-shear CFD profile"><div class="project-content"><p class="label">Roche · CFD & testing</p><h3>Sensor module optimization</h3><p>Selected the best of four geometries using a grid-independent CFD model and a PD-pump rig.</p><div class="project-stats"><span>15M cells</span><span>70% lower shear variation</span><span>72% lower pressure drop</span></div></div></article>
-        <article class="project"><img src="spar_in_assembly.jpg" alt="Carbon-fiber rear wing spar in assembly"><div class="project-content"><p class="label">Triton Racing · Composites</p><h3>Carbon-fiber rear-wing spar</h3><p>Designed, analyzed, built, and physically validated a corrugated carbon-fiber rear-wing spar.</p><div class="project-stats"><span>31 in span</span><span>400 N/m load</span><span>FOS 5.5</span></div></div></article>
-        <article class="project"><img src="mount_assembly.jpg" alt="Aluminum rear-wing mounts assembled"><div class="project-content"><p class="label">Triton Racing · FEA</p><h3>Rear-wing mounts</h3><p>Optimized and fabricated 6061-T6 swan-neck mounts, then verified the design through hand calculations and structural analysis.</p><div class="project-stats"><span>77% less mass</span><span>2.2M-cell FEA</span><span>Water-jet built</span></div></div></article>
-        <article class="project"><img src="fixture_prototype.jpg" alt="Precision Z-positioning fixture prototype"><div class="project-content"><p class="label">Roche · Mechanical design</p><h3>Precision Z-positioning fixture</h3><p>Designed a compact, lead-screw fixture to replace an error-prone manual probe-positioning setup.</p><div class="project-stats"><span>30 mm envelope</span><span>Lead-screw control</span><span>3D-printed prototype</span></div></div></article>
-        <article class="project"><img src="frontwing_cfd.jpg" alt="Two-element front-wing CFD pressure field"><div class="project-content"><p class="label">Triton Racing · CFD</p><h3>Front-wing CFD study</h3><p>Optimized a two-element front wing in ANSYS Fluent through a verified mesh study and parametric sweep.</p><div class="project-stats"><span>Cl 2.74</span><span>L/D 11.0</span><span>2.4% GCI</span></div></div></article>
-        <article class="project"><img src="windtunnel.jpg" alt="Wind-tunnel validation setup"><div class="project-content"><p class="label">Triton Racing · Experimental validation</p><h3>Wind-tunnel validation</h3><p>Tested a 9%-scale 3D-printed wing model to check CFD trends across pitch and flow-speed conditions.</p><div class="project-stats"><span>R² &gt; 0.996</span><span>3.8% force-ratio agreement</span><span>3 angles · 5 speeds</span></div></div></article>
+        <article class="project"><img src="shear_profile.jpg" alt="Microfluidic wall-shear CFD profile"><div class="project-content"><p class="label">Roche · CFD & testing</p><h3>Sensor module optimization</h3><p>Selected the best of four geometries using a grid-independent CFD model and a PD-pump rig.</p><div class="project-stats" aria-label="Skills used"><span>ANSYS Fluent</span><span>CAD geometry</span><span>Mesh convergence</span><span>CFD post-processing</span><span>Flow-rig testing</span><span>Design comparison</span></div></div></article>
+        <article class="project"><img src="spar_in_assembly.jpg" alt="Carbon-fiber rear wing spar in assembly"><div class="project-content"><p class="label">Triton Racing · Composites</p><h3>Carbon-fiber rear-wing spar</h3><p>Designed, analyzed, built, and physically validated a corrugated carbon-fiber rear-wing spar.</p><div class="project-stats" aria-label="Skills used"><span>SolidWorks</span><span>ANSYS ACP</span><span>Structural FEA</span><span>Composite layup</span><span>Three-point bend test</span><span>Design validation</span></div></div></article>
+        <article class="project"><img src="mount_assembly.jpg" alt="Aluminum rear-wing mounts assembled"><div class="project-content"><p class="label">Triton Racing · FEA</p><h3>Rear-wing mounts</h3><p>Optimized and fabricated 6061-T6 swan-neck mounts, then verified the design through hand calculations and structural analysis.</p><div class="project-stats" aria-label="Skills used"><span>SolidWorks</span><span>Hand calculations</span><span>ANSYS Mechanical</span><span>Mass optimization</span><span>GD&amp;T</span><span>Water-jet fabrication</span></div></div></article>
+        <article class="project"><img src="fixture_prototype.jpg" alt="Precision Z-positioning fixture prototype"><div class="project-content"><p class="label">Roche · Mechanical design</p><h3>Precision Z-positioning fixture</h3><p>Designed a compact, lead-screw fixture to replace an error-prone manual probe-positioning setup.</p><div class="project-stats" aria-label="Skills used"><span>SolidWorks</span><span>Fusion 360</span><span>Lead-screw design</span><span>Tolerance stack-up</span><span>DFM</span><span>3D printing</span></div></div></article>
+        <article class="project"><img src="frontwing_cfd.jpg" alt="Two-element front-wing CFD pressure field"><div class="project-content"><p class="label">Triton Racing · CFD</p><h3>Front-wing CFD study</h3><p>Optimized a two-element front wing in ANSYS Fluent through a verified mesh study and parametric sweep.</p><div class="project-stats" aria-label="Skills used"><span>ANSYS Fluent</span><span>Mesh convergence</span><span>Parametric sweep</span><span>Aero optimization</span><span>Pressure mapping</span><span>CFD verification</span></div></div></article>
+        <article class="project"><img src="windtunnel.jpg" alt="Wind-tunnel validation setup"><div class="project-content"><p class="label">Triton Racing · Experimental validation</p><h3>Wind-tunnel validation</h3><p>Tested a 9%-scale 3D-printed wing model to check CFD trends across pitch and flow-speed conditions.</p><div class="project-stats" aria-label="Skills used"><span>Experimental design</span><span>3D printing</span><span>Test instrumentation</span><span>Force measurement</span><span>Test matrix design</span><span>Data analysis</span></div></div></article>
       </div>
     </div></section>
     <section class="alt"><div class="wrap"><h2>Capabilities</h2><dl class="capabilities"><div class="capability"><dt>Design</dt><dd><span>SolidWorks + CATIA V5</span><span>Fusion 360 + 3DEXPERIENCE</span><span>GD&amp;T + DFM/DFA</span></dd></div><div class="capability"><dt>Analysis</dt><dd><span>ANSYS Mechanical / ACP / Fluent</span><span>Flow Simulation</span><span>MATLAB + mesh convergence</span></dd></div><div class="capability"><dt>Build</dt><dd><span>CNC routing</span><span>Water jet</span><span>3D printing</span></dd></div><div class="capability"><dt>Test</dt><dd><span>Flow + pressure rigs</span><span>Wind tunnel</span><span>Three-point bend testing</span></dd></div><div class="capability"><dt>Manufacturing</dt><dd><span>CAM</span><span>Composite wet layup</span><span>Fixture design + RCA/CAPA</span></dd></div></dl></div></section>
@@ -110,18 +114,17 @@
   </main>
   <footer><div class="wrap">© 2026 Devin Wong · Mechanical Engineering</div></footer>
   <script>
-    const skills = ['SolidWorks', 'CATIA V5', 'ANSYS Mechanical', 'ANSYS Fluent', 'Fusion 360', 'GD&T', 'CAM'];
-    const skillRotator = document.getElementById('skill-rotator');
-    let skillIndex = 0;
-    if (skillRotator && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInterval(() => {
-        skillIndex = (skillIndex + 1) % skills.length;
-        skillRotator.classList.remove('is-changing');
-        void skillRotator.offsetWidth;
-        skillRotator.textContent = skills[skillIndex];
-        skillRotator.classList.add('is-changing');
-      }, 2400);
-    }
+    document.querySelectorAll('.project-stats').forEach((belt) => {
+      const skills = Array.from(belt.children).map((skill) => skill.cloneNode(true));
+      const track = document.createElement('div');
+      track.className = 'conveyor-track';
+      belt.replaceChildren(track);
+
+      while (track.scrollWidth < belt.clientWidth + 80) {
+        skills.forEach((skill) => track.append(skill.cloneNode(true)));
+      }
+      track.innerHTML += track.innerHTML;
+    });
   </script>
 </body>
 </html>
